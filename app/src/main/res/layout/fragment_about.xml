@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutFragment"
+    android:background="@color/black">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About LEVEL UP"
+        android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="40dp"
+            android:text="In Level up, you will receive suggestions on how to level up your life in different ways. It can range from drinking more water to taking a walk or getting book recommendations. Sometimes we need a friend who pushes us to become a better version of ourselves. \n This is the goal of Level up!"
+            android:background="#FFFFFF"
+            android:padding="5dp"
+           android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_GoToHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To Home"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#E58984"/>
+
+        <Button
+            android:id="@+id/btn_GoToSignUpNewsletter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#E58984"
+            android:text="Sign up for our newsletter" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>
