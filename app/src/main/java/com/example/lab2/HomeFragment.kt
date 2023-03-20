@@ -31,11 +31,12 @@ class HomeFragment : Fragment() {
 
         val btnLevelUp = binding.btnGoToLevelUp
 
-
+        //Navigate to About
         btnToAboutFragment.setOnClickListener(){
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_aboutFragment)
         }
 
+        //Navigate to Level UP
         btnLevelUp.setOnClickListener(){
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_levelUpFragment)
         }

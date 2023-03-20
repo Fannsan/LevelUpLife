@@ -15,16 +15,17 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
             android:src="@drawable/leveling_up_fox" />
 
 
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to \n LEVEL UP"
+        android:text="WELCOME TO \n LEVEL UP"
         android:textStyle="bold"
+        android:gravity="center"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"
         android:textSize="40sp"

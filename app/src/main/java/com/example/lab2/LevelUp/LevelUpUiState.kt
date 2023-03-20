@@ -2,14 +2,12 @@ package com.example.lab2.LevelUp
 
 data class LevelUpUiState(
 
+    //Array (with the random quote generated from my viewModel)
     var myList: ArrayList<String> = ArrayList(
         arrayListOf()
     ),
 
-    var moodList: ArrayList<String> = ArrayList(
-        arrayListOf("Excited", "Tired", "Anxious", "Irritated", "Unmotivated")
-    ),
-
+    //Arraylist with quotes
     var excitedList: ArrayList<String> = ArrayList(
         arrayListOf(
             "Get moving by running, walking, or biking." ,

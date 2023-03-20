@@ -35,6 +35,7 @@ class LevelUpFragment : Fragment() {
         binding = FragmentLevelUpBinding.inflate(layoutInflater, container, false)
         val view = binding.root
 
+        // Get references to the components in the layout
         val tvQuote = binding.tvQuote
         val btnExcited = binding.btnExcited
         val btnTired = binding.btnTired
@@ -42,37 +43,34 @@ class LevelUpFragment : Fragment() {
         val btnIrritated = binding.btnIrritated
         val btnHome = binding.fabHome
 
-
+        //Instansiate viewModel
         val viewModel: LevelUpViewModel by viewModels()
 
-       //levelUpViewModel = ViewModelProvider(this)[LevelUpViewModel().javaClass]
-
+        //Navigate to home
         btnHome.setOnClickListener(){
             Navigation.findNavController(view).navigate(R.id.action_levelUpFragment_to_homeFragment)
         }
 
 
 
+        btnExcited.setOnClickListener(){
 
-                    btnExcited.setOnClickListener(){
-                        // val excitedQuote = viewModel.getRandomExcitedQuote()
-                        // tvQuote.text = excitedQuote
+            //fetching my quote from the chosen array
+            viewModel.setExcitedQuote()
 
-                        //fetching my quote from the schoosen array
-                        viewModel.setExcitedQuote()
+        }
 
-                    }
+        btnTired.setOnClickListener(){
 
-                    btnTired.setOnClickListener(){
+            viewModel.setTiredQuote()
 
-                        viewModel.setTiredQuote()
+        }
 
-                    }
+        btnAnxious.setOnClickListener() {
 
-                    btnAnxious.setOnClickListener() {
 
-                        viewModel.setAnxiousQuote()
-                    }
+            viewModel.setAnxiousQuote()
+        }
 
                     btnIrritated.setOnClickListener(){
 

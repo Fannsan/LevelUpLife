@@ -15,6 +15,7 @@ import java.util.regex.Pattern
 
 class NewsletterFragment : Fragment() {
 
+
     private lateinit var binding: FragmentNewsletterBinding
 
     //creating my arraylist of emails
@@ -25,9 +26,10 @@ class NewsletterFragment : Fragment() {
 
     }
 
-    //Making my UndoListner method to remove my email (the last index)
+    //Making my UndoListner class to remove my email (the last index)
     private inner class UndoListner: View.OnClickListener {
         override fun onClick(v: View?) {
+            //removing the lastEmail from the arrayList "emailList"
             emailList.removeAt(emailList.lastIndex)
             Snackbar.make(binding.root,"Your Email has been removed",Snackbar.LENGTH_SHORT).show()
         }
@@ -41,16 +43,18 @@ class NewsletterFragment : Fragment() {
         binding = FragmentNewsletterBinding.inflate(layoutInflater,container,false)
         val view = binding.root
 
+        // Get references to the components in the layout
         val btnHome = binding.fabHome
         val btnSignUp = binding.btnSignUp
         val inputEmail = binding.editTextTextEmailAddress
 
 
-        //onClick to remove my fragment from the stack to go beck to main
+        //onClick to go beck to main
         btnHome.setOnClickListener(){
             Navigation.findNavController(view).navigate(R.id.action_newsletterFragment_to_homeFragment)
         }
 
+        //Creating a onClick function for when the signUpbutton is being clicked
         btnSignUp.setOnClickListener(){
             val newEmail = inputEmail.text.toString()
 
@@ -60,6 +64,7 @@ class NewsletterFragment : Fragment() {
 
                 println(emailList)
 
+                //Making a Snackbar to display message and calling to my UndoListner from my inner class
                 Snackbar.make(binding.root,"If you want to undo Signup click Undo", Snackbar.LENGTH_SHORT)
                     .setAction("Undo",UndoListner())
                     .show()

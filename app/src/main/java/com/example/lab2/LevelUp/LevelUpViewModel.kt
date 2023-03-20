@@ -13,6 +13,7 @@ class LevelUpViewModel: ViewModel() {
     val uiState: StateFlow<LevelUpUiState> = _uiState.asStateFlow()
 
 
+    //Methods to update _uiState value in "myList" from my arrayLists ExcitedList, TiredList... to the actual quote from the random method
     fun setExcitedQuote() {
         _uiState.update {
                 state -> state.copy(
@@ -46,6 +47,7 @@ class LevelUpViewModel: ViewModel() {
     }
 
 
+    //Get random quote from ExcitedList in uiState
     fun getRandomExcitedQuote():String{
 
         return uiState.value.excitedList.random()
