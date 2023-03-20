@@ -52,34 +52,44 @@ class LevelUpFragment : Fragment() {
         }
 
 
-        lifecycleScope.launch{
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collect(){
+
 
                     btnExcited.setOnClickListener(){
-                        val excitedQuote = viewModel.getRandomExcitedQuote()
-                        tvQuote.text = excitedQuote
+                        // val excitedQuote = viewModel.getRandomExcitedQuote()
+                        // tvQuote.text = excitedQuote
+
+                        //fetching my quote from the schoosen array
+                        viewModel.setExcitedQuote()
+
                     }
 
                     btnTired.setOnClickListener(){
-                        val tiredQuote = viewModel.getRandomTiredQuote()
-                        tvQuote.text = tiredQuote
+
+                        viewModel.setTiredQuote()
+
                     }
 
                     btnAnxious.setOnClickListener() {
-                        val anxiousQuote = viewModel.getRandomAnxiousQuote()
-                        tvQuote.text = anxiousQuote
+
+                        viewModel.setAnxiousQuote()
                     }
 
                     btnIrritated.setOnClickListener(){
-                        val irritatedQuote = viewModel.getRandomIrritatedQuote()
-                        tvQuote.text = irritatedQuote
+
+                        viewModel.setIrritatedQuote()
+
                     }
 
 
+        //My lifecycleScope for when my text change with a new quote
+        lifecycleScope.launch{
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiState.collect() {
+                    tvQuote.text = viewModel.uiState.value.myList.toString()
+
+                }
 
 
-            }
             }
         }
 
