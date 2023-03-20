@@ -26,13 +26,12 @@ class AboutFragment : Fragment() {
         binding = FragmentAboutBinding.inflate(layoutInflater,container,false)
         val view = binding.root
 
-        val btnHome = binding.btnGoToHome
+        val btnHome = binding.fabHome
 
         val btnNewsletter = binding.btnGoToSignUpNewsletter
 
-        //onClick to remove my fragment from the stack to go back to main
         btnHome.setOnClickListener(){
-            parentFragmentManager.beginTransaction().remove(this).commit()
+            Navigation.findNavController(view).navigate(R.id.action_aboutFragment_to_homeFragment)
         }
 
         btnNewsletter.setOnClickListener(){

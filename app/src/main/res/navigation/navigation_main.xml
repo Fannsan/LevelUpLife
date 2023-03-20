@@ -42,5 +42,9 @@
         android:id="@+id/levelUpFragment"
         android:name="com.example.lab2.LevelUpFragment"
         android:label="fragment_level_up"
-        tools:layout="@layout/fragment_level_up" />
+        tools:layout="@layout/fragment_level_up" >
+        <action
+            android:id="@+id/action_levelUpFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
