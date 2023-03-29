@@ -1,4 +1,4 @@
-package com.example.lab2.LevelUp
+package com.example.LevelUpLife.LevelUp
 
 data class LevelUpUiState(
 

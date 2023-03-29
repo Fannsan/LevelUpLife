@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.lab2.HomeFragment"
+        android:name="com.example.LevelUpLife.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.lab2.AboutFragment"
+        android:name="com.example.LevelUpLife.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsletterFragment"
-        android:name="com.example.lab2.NewsletterFragment"
+        android:name="com.example.LevelUpLife.NewsletterFragment"
         android:label="fragment_newsletter"
         tools:layout="@layout/fragment_newsletter" >
         <action
@@ -40,11 +40,16 @@
     </fragment>
     <fragment
         android:id="@+id/levelUpFragment"
-        android:name="com.example.lab2.LevelUpFragment"
+        android:name="com.example.LevelUpLife.LevelUpFragment"
         android:label="fragment_level_up"
         tools:layout="@layout/fragment_level_up" >
         <action
             android:id="@+id/action_levelUpFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.LevelUpLife.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

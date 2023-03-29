@@ -1,4 +1,4 @@
-package com.example.lab2
+package com.example.LevelUpLife
 
 import org.junit.Test
 

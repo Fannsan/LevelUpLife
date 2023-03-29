@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.lab2'
+    namespace 'com.example.LevelUpLife'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.lab2"
+        applicationId "com.example.LevelUpLife"
         minSdk 24
         targetSdk 33
         versionCode 1

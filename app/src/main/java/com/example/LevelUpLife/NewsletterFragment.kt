@@ -1,4 +1,4 @@
-package com.example.lab2
+package com.example.LevelUpLife
 
 import android.os.Bundle
 import android.util.Patterns
@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
-import com.example.lab2.databinding.FragmentNewsletterBinding
+import com.example.LevelUpLife.databinding.FragmentNewsletterBinding
 import com.google.android.material.snackbar.Snackbar
-import java.util.regex.Pattern
 
 
 class NewsletterFragment : Fragment() {

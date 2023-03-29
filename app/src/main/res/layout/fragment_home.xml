@@ -23,7 +23,7 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WELCOME TO \n LEVEL UP"
+        android:text="WELCOME TO \n LEVEL UP LIFE"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/white"
@@ -49,6 +49,14 @@
             android:layout_marginTop="10dp"
             android:text="Go to about"
             android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:backgroundTint="#B2E58984"
+            android:layout_marginTop="10dp"/>
 
 
 

@@ -1,4 +1,4 @@
-package com.example.lab2
+package com.example.LevelUpLife
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

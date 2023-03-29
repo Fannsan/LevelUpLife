@@ -1,4 +1,4 @@
-package com.example.lab2
+package com.example.LevelUpLife
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,16 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
-import com.example.lab2.LevelUp.LevelUpViewModel
-import com.example.lab2.databinding.FragmentLevelUpBinding
-import kotlinx.coroutines.flow.collect
+import com.example.LevelUpLife.LevelUp.LevelUpViewModel
+import com.example.LevelUpLife.databinding.FragmentLevelUpBinding
 import kotlinx.coroutines.launch
 
 class LevelUpFragment : Fragment() {
