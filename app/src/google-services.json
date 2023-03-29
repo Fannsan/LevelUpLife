@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "875322054457",
+    "project_id": "leveluplife-d3204",
+    "storage_bucket": "leveluplife-d3204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875322054457:android:f55764d170b9421ccb7ae8",
+        "android_client_info": {
+          "package_name": "com.example.LevelUpLife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875322054457-30bqa6lshimbl7nisfd7qn9ct5gbt9df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUlvUiOU-Kf1TiPksskOfLdHJkld2r8H8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875322054457-30bqa6lshimbl7nisfd7qn9ct5gbt9df.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.LevelUpLife"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -38,6 +39,11 @@ android {
 }
 
 dependencies {
+
+    //implementing the database to the project
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation 'com.google.firebase:firebase-database-ktx'
+
     implementation 'androidx.activity:activity-ktx:1.6.1'
 
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
