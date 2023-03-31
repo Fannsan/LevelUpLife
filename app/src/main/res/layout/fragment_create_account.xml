@@ -29,11 +29,11 @@
         android:layout_marginBottom="40dp"/>
 
     <EditText
-        android:id="@+id/et_newUserName"
+        android:id="@+id/et_emailAdress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:background="@color/white"
         android:hint="Your username..." />
@@ -42,12 +42,23 @@
         android:id="@+id/et_newPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPassword"
         android:background="@color/white"
         android:hint="Your password..."
         android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/et_confirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Your password again..."
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btn_createAccount"
@@ -55,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Create account" />
+
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

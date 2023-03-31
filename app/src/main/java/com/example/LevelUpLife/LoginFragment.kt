@@ -45,11 +45,16 @@ class LoginFragment : Fragment() {
         val etPassword = binding.etPassword
         val btnSignIn = binding.btnSignIn
         val fabHome = binding.fabHome
+        val tvSignUp = binding.tvSignUp
 
         var listOfUsers = arrayListOf<Users>()
 
         fabHome.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
+        }
+
+        tvSignUp.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_createAccountFragment)
         }
 
 
