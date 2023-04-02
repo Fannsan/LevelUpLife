@@ -11,10 +11,10 @@
         android:id="@+id/fab_Home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="25dp"
         android:clickable="true"
         android:src="@drawable/bxs_home"
-        tools:ignore="ContentDescription"
-        android:layout_margin="25dp"/>
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up for our Newsletter"
+            android:text="Sign up for our newsletter"
             android:textSize="30sp"
             android:textColor="#E58984"
             android:textStyle="bold"/>
@@ -41,7 +41,7 @@
             android:textColor="@color/black"
             android:background="@drawable/rounded"
             android:textSize="18sp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#FFFFFF"
             android:padding="10dp"
             android:layout_marginTop="30dp"/>
 
@@ -59,11 +59,17 @@
 
         <Button
             android:id="@+id/btn_SignUp"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#E58984"
-            android:text="Sign up" />
+            android:backgroundTint="@color/white"
+            android:textColor="@color/salmon"
+            app:strokeWidth="6dp"
+            android:padding="15dp"
+            app:strokeColor="@color/salmon"
+            android:text="Sign up"
+            />
 
 
 

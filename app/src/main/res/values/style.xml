@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RoundedImageView" parent="">
+        <item name="cornerSize">50%</item> <!-- Storleken på hörnen -->
+        <item name="cornerFamily">rounded</item> <!-- Välj mellan "rounded" eller "cut" -->
+    </style>
+</resources>

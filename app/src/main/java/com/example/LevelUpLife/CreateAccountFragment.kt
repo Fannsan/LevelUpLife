@@ -47,7 +47,7 @@ class CreateAccountFragment : Fragment() {
 
         //Navigate to Home
         fabHome.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
+            Navigation.findNavController(view).navigate(R.id.action_createAccountFragment_to_homeFragment)
         }
 
 
@@ -56,10 +56,10 @@ class CreateAccountFragment : Fragment() {
             val email = etEmail.text.toString()
             val password = etCreatePassword.text.toString()
             val confirmPassword = etConfirmPassword.text.toString()
+            //Creating a new User
+            val newUser = Users(email, password, isRegistred = true)
 
-            val query = db.child("users")
-                .orderByChild("email").equalTo(email)
-            query.addListenerForSingleValueEvent(object : ValueEventListener{
+            db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     when {
                         snapshot.exists() ->{
@@ -71,20 +71,15 @@ class CreateAccountFragment : Fragment() {
 
                     //Check if password and confirm password is not the same
                         } password != confirmPassword -> {
-
-
+                        Toast.makeText(requireContext(),"Passwords are not matching", Toast.LENGTH_LONG).show()
                     }else -> {
-
-                        //Creating a new User
-                        val newUser = Users(email, password, isRegistred = true)
-
                         //push the new user to the database
                         db.push()
                             .setValue(newUser)
                             .addOnSuccessListener {
                                 Toast.makeText(
                                     requireContext(),
-                                    "You made a new account!",
+                                    "Sucsess: You made a new account!",
                                     Toast.LENGTH_LONG
                                 ).show()
 
@@ -106,9 +101,12 @@ class CreateAccountFragment : Fragment() {
 
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(
+                        requireContext(),
+                        "Failure: something went wrong with the database connection",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
             )

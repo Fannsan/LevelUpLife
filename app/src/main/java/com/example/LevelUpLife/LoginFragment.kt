@@ -10,8 +10,7 @@ import androidx.navigation.Navigation
 import com.example.LevelUpLife.LevelUp.Users
 import com.example.LevelUpLife.databinding.FragmentLoginBinding
 import com.example.LevelUpLife.databinding.FragmentNewsletterBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 class LoginFragment : Fragment() {
@@ -41,7 +40,7 @@ class LoginFragment : Fragment() {
             .getInstance("https://leveluplife-d3204-default-rtdb.europe-west1.firebasedatabase.app/")
             .getReference("users")
 
-        val etUsername = binding.etUserName
+        val etEmail = binding.etEmail
         val etPassword = binding.etPassword
         val btnSignIn = binding.btnSignIn
         val fabHome = binding.fabHome
@@ -61,17 +60,48 @@ class LoginFragment : Fragment() {
 
         btnSignIn.setOnClickListener{
 
-           val username = etUsername.text.toString()
+           val email = etEmail.text.toString()
            val password = etPassword.text.toString()
 
-            //Creating a new User
-           val newUser = Users(username, password, isRegistred = true)
+            db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        //Going trough all the index of the children
+                        for(userSnapshot in snapshot.children) {
+                            val dbUser = userSnapshot.getValue(Users::class.java)
 
-            db.push()
-                .setValue(newUser)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(),"hello",Toast.LENGTH_LONG).show()
+                            if (dbUser != null && dbUser.password == password) {
+                                Navigation.findNavController(view)
+                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+                                Toast.makeText(
+                                    requireContext(),
+                                    "You successfully logged in ",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Wrong password or email",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+
+
+                    } else {
+                        Toast.makeText(requireContext(),"Your email does not exist, try again or register a new account", Toast.LENGTH_LONG).show()
+                    }
                 }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Failure: something went wrong with the database connection",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            })
 
 
 

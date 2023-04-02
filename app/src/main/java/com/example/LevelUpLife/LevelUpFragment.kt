@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +44,7 @@ class LevelUpFragment : Fragment() {
         //Instansiate viewModel
         val viewModel: LevelUpViewModel by viewModels()
 
+
         //Navigate to home
         btnHome.setOnClickListener(){
             Navigation.findNavController(view).navigate(R.id.action_levelUpFragment_to_homeFragment)
@@ -53,7 +55,7 @@ class LevelUpFragment : Fragment() {
         btnExcited.setOnClickListener(){
 
             //fetching my quote from the chosen array
-            viewModel.setExcitedQuote()
+            viewModel.setExcitedQuote().toString()
 
         }
 
@@ -69,18 +71,21 @@ class LevelUpFragment : Fragment() {
             viewModel.setAnxiousQuote()
         }
 
-                    btnIrritated.setOnClickListener(){
+        btnIrritated.setOnClickListener(){
 
-                        viewModel.setIrritatedQuote()
+             viewModel.setIrritatedQuote()
 
-                    }
+        }
 
 
         //My lifecycleScope for when my text change with a new quote
         lifecycleScope.launch{
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.uiState.collect() {
-                    tvQuote.text = viewModel.uiState.value.myList.toString()
+                    val quote = viewModel.uiState.value.myList.toString()
+
+                    //substring get rid of first and last signs of the array  which is the "["
+                    tvQuote.text = quote.substring(1,quote.length-1)
 
                 }
 

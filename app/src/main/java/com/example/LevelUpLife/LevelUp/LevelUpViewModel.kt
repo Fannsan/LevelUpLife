@@ -18,6 +18,7 @@ class LevelUpViewModel: ViewModel() {
         _uiState.update {
                 state -> state.copy(
                     myList = arrayListOf(getRandomExcitedQuote())
+
                 )
         }
     }

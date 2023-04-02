@@ -31,14 +31,14 @@
             android:layout_marginBottom="40dp"/>
 
         <EditText
-            android:id="@+id/et_UserName"
+            android:id="@+id/et_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:background="@color/white"
-            android:hint="Your username..." />
+            android:hint="Your email..." />
 
         <EditText
             android:id="@+id/et_password"
@@ -56,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/salmon"
             android:text="Sign in" />
 
         <TextView
@@ -64,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="No account? Sign up here"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
