@@ -10,7 +10,7 @@ data class LevelUpUiState(
     //Arraylist with quotes
     var excitedList: ArrayList<String> = ArrayList(
         arrayListOf(
-            "Get moving by running, walking, or biking." ,
+                    "Get moving by running, walking, or biking." ,
                     "Share your excitement with someone by telling a friend or family member about it." ,
                     "Write down your thoughts and feelings in a journal or blog." ,
                     "Listen to uplifting music that makes you feel positive." ,

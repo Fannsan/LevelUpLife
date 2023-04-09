@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/floatingActionButton">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_Home"
@@ -30,20 +41,71 @@
             app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginHorizontal="20dp"
-            android:text="Welcome to your  own profile"
+            android:text="Welcome to your own profile!"
             android:textColor="@color/black"
             android:background="@drawable/rounded"
             android:textSize="18sp"
             android:backgroundTint="#FFFFFF"
             android:padding="10dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textAlignment="center"
+            android:text="Here you can change your username, \n profile picture or delete your account. "/>
+
+        <EditText
+            android:id="@+id/et_changeUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Your new username"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change username"
+            android:backgroundTint="@color/salmon"
+            android:layout_marginTop="5dp"/>
+
+
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-</FrameLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:text="New goal"
+        app:icon="@drawable/baseline_add_24"
+        android:layout_margin="10dp"/>
+</RelativeLayout>
