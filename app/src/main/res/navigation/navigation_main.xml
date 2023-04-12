@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_loginFragment_to_createAccountFragment"
             app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/createAccountFragment"

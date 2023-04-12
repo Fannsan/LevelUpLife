@@ -31,7 +31,7 @@ class CreateAccountFragment : Fragment() {
     ): View {
        binding = FragmentCreateAccountBinding.inflate(layoutInflater,container,false)
         val view = binding.root
-
+        val etUsername = binding.etUsername
         val etEmail = binding.etEmailAdress
         val etCreatePassword = binding.etNewPassword
         val etConfirmPassword = binding.etConfirmPassword
@@ -53,11 +53,13 @@ class CreateAccountFragment : Fragment() {
 
         btnCreateAcount.setOnClickListener{
 
+            val username = etUsername.text.toString()
             val email = etEmail.text.toString()
             val password = etCreatePassword.text.toString()
             val confirmPassword = etConfirmPassword.text.toString()
+
             //Creating a new User
-            val newUser = Users(email, password, isRegistred = true)
+            val newUser = Users(username, email, password, isRegistred = true)
 
             db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -79,7 +81,7 @@ class CreateAccountFragment : Fragment() {
                             .addOnSuccessListener {
                                 Toast.makeText(
                                     requireContext(),
-                                    "Sucsess: You made a new account!",
+                                    "Success: You made a new account!",
                                     Toast.LENGTH_LONG
                                 ).show()
 
@@ -110,27 +112,6 @@ class CreateAccountFragment : Fragment() {
                 }
             }
             )
-
-
-
-
-            /*
-           db.child("users")
-               .orderByChild("username") //Sorting in the database by "username"
-               .equalTo(email) //matching the username from the database with the input from the user
-               .get()
-               .addOnSuccessListener {
-
-                   if (it.exists()){
-                       Toast.makeText(requireContext(),"The username you entered already exist try another", Toast.LENGTH_LONG).show()
-                       println("the username already exist")
-                   }
-*/
-
-
-               // .addOnFailureListener{
-                //    Toast.makeText(requireContext(),"Failure: something went wrong", Toast.LENGTH_LONG).show()
-        //    println("något gick fel ") }
 
         }
 

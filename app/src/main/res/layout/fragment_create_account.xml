@@ -38,7 +38,7 @@
         android:layout_marginBottom="40dp"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/et_Username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"

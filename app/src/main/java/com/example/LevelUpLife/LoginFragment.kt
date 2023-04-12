@@ -71,13 +71,19 @@ class LoginFragment : Fragment() {
                             val dbUser = userSnapshot.getValue(Users::class.java)
 
                             if (dbUser != null && dbUser.password == password) {
+
                                 Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_homeFragment)
+                                    .navigate(R.id.action_loginFragment_to_userProfileFragment)
+
+                                //TODO - Make the information of the user is accessible in the user profile
+
                                 Toast.makeText(
                                     requireContext(),
                                     "You successfully logged in ",
                                     Toast.LENGTH_LONG
                                 ).show()
+
+
                             } else {
                                 Toast.makeText(
                                     requireContext(),
