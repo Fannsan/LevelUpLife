@@ -34,6 +34,8 @@ class HomeFragment : Fragment() {
 
         val btnLogin = binding.btnLogin
 
+        val btnToGoal = binding.btnToGoals
+
         btnLogin.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_loginFragment)
         }
@@ -46,6 +48,10 @@ class HomeFragment : Fragment() {
         //Navigate to Level UP
         btnLevelUp.setOnClickListener(){
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_levelUpFragment)
+        }
+
+        btnToGoal.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_goalFragment)
         }
 
 
