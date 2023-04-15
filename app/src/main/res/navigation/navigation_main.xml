@@ -98,5 +98,9 @@
         android:id="@+id/newGoalFragment"
         android:name="com.example.LevelUpLife.NewGoalFragment"
         android:label="fragment_new_goal"
-        tools:layout="@layout/fragment_new_goal" />
+        tools:layout="@layout/fragment_new_goal" >
+        <action
+            android:id="@+id/action_newGoalFragment_to_goalFragment"
+            app:destination="@id/goalFragment" />
+    </fragment>
 </navigation>

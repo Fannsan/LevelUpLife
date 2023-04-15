@@ -108,11 +108,11 @@
             android:text="Change username" />
 
         <Button
+            android:id="@+id/btn_DeleteUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete your account"
             android:backgroundTint="@color/salmon"
-        />
+            android:text="Delete your account" />
 
 
 

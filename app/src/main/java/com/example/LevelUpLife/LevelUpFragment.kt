@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 class LevelUpFragment : Fragment() {
 
     private lateinit var binding: FragmentLevelUpBinding
-    //private lateinit var levelUpViewModel: LevelUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

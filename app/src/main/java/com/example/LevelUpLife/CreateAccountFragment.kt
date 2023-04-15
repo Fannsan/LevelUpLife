@@ -38,7 +38,7 @@ class CreateAccountFragment : Fragment() {
         val btnCreateAcount = binding.btnCreateAccount
         val fabHome = binding.fabHome
 
-        var listOfUsers = arrayListOf<Users>()
+        //var listOfUsers = arrayListOf<Users>()
 
 
         db = FirebaseDatabase
@@ -89,6 +89,7 @@ class CreateAccountFragment : Fragment() {
                                 binding.etEmailAdress.text.clear()
                                 binding.etNewPassword.text.clear()
                                 binding.etConfirmPassword.text.clear()
+                                binding.etUsername.text.clear()
 
                             }
                             .addOnFailureListener {

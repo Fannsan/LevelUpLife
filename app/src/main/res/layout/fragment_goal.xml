@@ -6,13 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".GoalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="My goals"
-        android:textSize="30dp"
-        android:layout_margin="10dp"/>
+        android:layout_height="wrap_content"
+        android:text="Goal: "
+        android:textSize="40sp"
+        android:id="@+id/goal"
+        android:layout_margin="20dp"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_newGoal"

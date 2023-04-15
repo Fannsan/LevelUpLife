@@ -16,7 +16,7 @@ class UserProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentUserProfileBinding
 
-    private lateinit var db : DatabaseReference
+    private lateinit var db: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentUserProfileBinding.inflate(layoutInflater,container,false)
+        binding = FragmentUserProfileBinding.inflate(layoutInflater, container, false)
         val view = binding.root
 
         val userName = binding.tvUserName
@@ -36,13 +36,14 @@ class UserProfileFragment : Fragment() {
         val btnChangeUsername = binding.btnChangeUsername
         val etPassword = binding.etPassword
         val etOldUserName = binding.etOldUserName
+        val btnDeleteUser = binding.btnDeleteUser
 
         db = FirebaseDatabase
             .getInstance("https://leveluplife-d3204-default-rtdb.europe-west1.firebasedatabase.app/")
             .getReference("users")
 
 
-        btnChangeUsername.setOnClickListener{
+        btnChangeUsername.setOnClickListener {
             val oldUsername = etOldUserName.text.toString()
             val username = etChangeUsername.text.toString()
             val password = etPassword.text.toString()
@@ -99,20 +100,16 @@ class UserProfileFragment : Fragment() {
 
         }
 
+        btnDeleteUser.setOnClickListener{
+
+
+
+        }
+
 
         return view
     }
-
-    private fun updateData(username: String) {
-
-
-    val user = mapOf("username" to username)
-        db.child(username).updateChildren(user).addOnSuccessListener {
-            binding.etChangeUserName.text.clear()
-        }
-
-    }
-
-
 }
+
+
 
