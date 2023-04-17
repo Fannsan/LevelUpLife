@@ -6,11 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
+import com.example.LevelUpLife.LevelUp.GoalViewModel
+import com.example.LevelUpLife.LevelUp.LevelUpViewModel
+import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
 import com.example.LevelUpLife.databinding.FragmentLoginBinding
 import com.example.LevelUpLife.databinding.FragmentNewsletterBinding
 import com.google.firebase.database.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
@@ -46,6 +57,9 @@ class LoginFragment : Fragment() {
         val fabHome = binding.fabHome
         val tvSignUp = binding.tvSignUp
 
+        val viewModel: UserViewModel by viewModels()
+
+
         var listOfUsers = arrayListOf<Users>()
 
         fabHome.setOnClickListener{
@@ -72,10 +86,23 @@ class LoginFragment : Fragment() {
 
                             if (dbUser != null && dbUser.password == password) {
 
+                                /*Save email in UserViewModel if user is logged in
+                                lifecycleScope.launch{
+                                    repeatOnLifecycle(Lifecycle.State.STARTED){
+                                        viewModel.uiState.collect(){
+                                            viewModel.loggedInUser(email = userEmail)
+
+                                        }
+                                    }
+                                }*/
+
+                               viewModel.loggedInUser(email)
+
+
                                 Navigation.findNavController(view)
                                     .navigate(R.id.action_loginFragment_to_userProfileFragment)
 
-                                //TODO - Make the information of the user is accessible in the user profile
+
 
                                 Toast.makeText(
                                     requireContext(),

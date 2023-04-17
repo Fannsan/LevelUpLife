@@ -8,19 +8,23 @@ import kotlinx.coroutines.flow.update
 
 class GoalViewModel: ViewModel() {
 
-    //Setup Mutblestateflow
+
+  var goalList: ArrayList<String> = ArrayList(arrayListOf())
+
+    /* Setup Mutblestateflow
     private val _goalUiState = MutableStateFlow(GoalUIState())
     val goalUiState: StateFlow<GoalUIState> = _goalUiState.asStateFlow()
-
-
+*/
     fun addNewGoal(newGoal:String){
-        _goalUiState.update {
-            state -> state.copy(
-            goalList = arrayListOf(newGoal)
-        )
+     goalList.add(newGoal)
         }
-        }
-    }
+
+
+  fun getGoalListAsString(): String {
+    return goalList.joinToString(", ")
+  }
+  }
+
 
 
 

@@ -43,6 +43,7 @@ dependencies {
     //implementing the database to the project
     implementation platform('com.google.firebase:firebase-bom:31.3.0')
     implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-auth:21.3.0'
 
     implementation 'androidx.activity:activity-ktx:1.6.1'
 

@@ -107,6 +107,26 @@
             android:backgroundTint="@color/salmon"
             android:text="Change username" />
 
+        <EditText
+            android:id="@+id/et_userEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Your email"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"/>
+
+        <EditText
+            android:id="@+id/et_userPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Your password"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
+
         <Button
             android:id="@+id/btn_DeleteUser"
             android:layout_width="wrap_content"
