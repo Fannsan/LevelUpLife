@@ -96,11 +96,15 @@ class LoginFragment : Fragment() {
                                     }
                                 }*/
 
-                               viewModel.loggedInUser(email)
 
+                                //viewModel.loggedInUser(email)
+
+                                // Using bundle to send over the email of the user when they log in
+                                val bundle = Bundle()
+                                bundle.putString("email",email)
 
                                 Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_userProfileFragment)
+                                    .navigate(R.id.action_loginFragment_to_userProfileFragment, bundle)
 
 
 

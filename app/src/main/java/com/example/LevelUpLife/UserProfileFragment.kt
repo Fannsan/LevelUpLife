@@ -1,5 +1,6 @@
 package com.example.LevelUpLife
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
 import com.example.LevelUpLife.databinding.FragmentCreateAccountBinding
 import com.example.LevelUpLife.databinding.FragmentUserProfileBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import kotlinx.coroutines.launch
 
@@ -42,8 +44,6 @@ class UserProfileFragment : Fragment() {
 
         val etChangeUsername = binding.etChangeUserName
         val btnChangeUsername = binding.btnChangeUsername
-        val etPassword = binding.etPassword
-        val etOldUserName = binding.etOldUserName
         val etEmail = binding.etUserEmail
         val etUserPasssword = binding.etUserPassword
 
@@ -54,8 +54,37 @@ class UserProfileFragment : Fragment() {
             .getReference("users")
 
 
-        val userEmail = binding.tvUserName
+       // val userEmail = binding.tvUserName
 
+        val email = arguments?.getString("email")
+
+        //userEmail.text = email
+
+        db.orderByChild("email")
+            .equalTo(email)
+            .addListenerForSingleValueEvent(object : ValueEventListener   {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                     for (i in snapshot.children) {
+                         val dbUser = i.getValue(Users::class.java)
+                         val username = dbUser?.username
+
+                         binding.tvUserName.text = username
+
+                    }
+                     }
+
+                  
+
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            } )
+        /*
         val viewModel: UserViewModel by viewModels()
 
         lifecycleScope.launch{
@@ -67,7 +96,7 @@ class UserProfileFragment : Fragment() {
                 }
             }
         }
-
+     */
 
         //Inizialise viewmodel
        // viewModel = ViewModelProvider(requireActivity())[UserViewModel().javaClass]
@@ -76,23 +105,36 @@ class UserProfileFragment : Fragment() {
 
 
         btnChangeUsername.setOnClickListener {
-            val oldUsername = etOldUserName.text.toString()
+
             val username = etChangeUsername.text.toString()
-            val password = etPassword.text.toString()
-            db.orderByChild("username").equalTo(oldUsername).addListenerForSingleValueEvent(object :
+
+
+            // Check if the username EditText is empty
+            if (username.isBlank()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Please enter a username to be able to change it",
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
+
+            db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
+
                         //Going trough all the index of the children
                         for (userSnapshot in snapshot.children) {
                             val dbUser = userSnapshot.getValue(Users::class.java)
 
-                            if (dbUser != null && dbUser.password == password) {
+                            if (dbUser != null ) {
 
                                 userSnapshot.ref.child("username").setValue(username)
 
                                     .addOnSuccessListener {
                                         binding.etChangeUserName.text.clear()
+                                         binding.tvUserName.text = username
                                         Toast.makeText(
                                             requireContext(),
                                             "You successfully changed your username",
@@ -100,26 +142,11 @@ class UserProfileFragment : Fragment() {
                                         ).show()
                                     }
 
-                            } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Wrong password or username",
-                                    Toast.LENGTH_LONG
-                                ).show()
                             }
                         }
 
-
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Your username does not exist, try again",
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
                 }
-
-
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(
                         requireContext(),
@@ -133,51 +160,52 @@ class UserProfileFragment : Fragment() {
         }
 
 
-        btnDeleteUser.setOnClickListener{
-        /*val email = etEmail.text.toString()
-            val userPassword = etUserPasssword.text.toString()
-            db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
+        btnDeleteUser.setOnClickListener {
 
-                        for (userSnapshot in snapshot.children){
-                            val dbUser = userSnapshot.getValue(Users::class.java)
-                            if (dbUser != null && dbUser.password == userPassword) {
+            val alert = AlertDialog.Builder(requireContext())
+            alert.setTitle("Delete profile")
+            alert.setMessage("Are you sure you want to delete your profile?")
 
-                                userSnapshot.ref.child("email")
+            alert.setPositiveButton("Yes") {_, _ ->
 
-                                    .addOnSuccessListener {
-                                        binding.etChangeUserName.text.clear()
+                db.orderByChild("email").equalTo(email)
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (snapshot.exists()) {
+
+                                for (userSnapshot in snapshot.children) {
+                                    userSnapshot.ref.removeValue().addOnSuccessListener {
                                         Toast.makeText(
                                             requireContext(),
                                             "You successfully deleted your profile",
                                             Toast.LENGTH_LONG
-                                        ).show()
-                                    }
+                                        )
+                                            .show()
+                                        //If the user is deleted navigate to the home fragment
+                                        Navigation.findNavController(view).navigate(R.id.action_userProfileFragment_to_homeFragment)
 
-                            } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Wrong password or email",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                    }
+                                }
                             }
                         }
 
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Failure: something went wrong with the database connection: $it",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    })
 
-                    } else{
-                        Toast.makeText(
-                            requireContext(),
-                            "Your email and password does not exist, try again",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
-            })
 
-*/
+            }
+            alert.setNegativeButton("No") { _, _ -> }
+            val dialog = alert.create()
+            dialog.show()
+
+
         }
-
        /* lifecycleScope.launch{
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.uiState.collect(){
