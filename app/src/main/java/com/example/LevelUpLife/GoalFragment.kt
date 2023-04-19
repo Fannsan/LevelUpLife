@@ -11,7 +11,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
+import com.example.LevelUpLife.LevelUp.GoalAdapter
+import com.example.LevelUpLife.LevelUp.GoalUIState
 import com.example.LevelUpLife.LevelUp.GoalViewModel
 import com.example.LevelUpLife.databinding.FragmentGoalBinding
 import com.example.LevelUpLife.databinding.FragmentLoginBinding
@@ -24,17 +28,21 @@ class GoalFragment : Fragment() {
 
     private lateinit var binding: FragmentGoalBinding
 
-    private var frag: NewGoalFragment? = null
-
-    //private lateinit var auth: FirebaseAuth
-
     private lateinit var viewModel: GoalViewModel
+
+    private lateinit var goalAdapter: GoalAdapter
+
+    private lateinit var recyclerView: RecyclerView
+
+    //private lateinit var itemList:  ArrayList<GoalUIState>
+    private var goalList = mutableListOf<GoalUIState>()
+
+    lateinit var goalName : Array<String>
+    lateinit var goals : Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,45 +54,27 @@ class GoalFragment : Fragment() {
         val view = binding.root
 
 
-        val btnNewGoal = binding.fabNewGoal
-
-        val texten = binding.goal
-
-        val etInputGoal = binding.etInputGoal
-
-        val btnAddGoal = binding.btnAddGoal
+        val etGoalName = binding.etGoalName
+        val etGoalDesc = binding.etGoalDescription
+        val btnSave = binding.btnSave
+        val goalList = binding.goalList
 
         // val viewModel: GoalViewModel by viewModels()
         viewModel = ViewModelProvider(this)[GoalViewModel().javaClass]
-        texten.text = viewModel.toString()
+        goalList.text = viewModel.toString()
+
+        //Show and save the data in my Goal viewModel when you click on the button
+        btnSave.setOnClickListener(){
+            val goalName = etGoalName.text.toString()
+            val goalDesc = etGoalDesc.text.toString()
 
 
-
-        btnAddGoal.setOnClickListener(){
-            val newGoal = etInputGoal.text.toString()
-            viewModel.addNewGoal(newGoal)
-            texten.text = viewModel.getGoalListAsString()
-            etInputGoal.setText("")
-        }
-        texten.text = viewModel.getGoalListAsString()
-
-
-        btnNewGoal.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_goalFragment_to_newGoalFragment)
+            //viewModel.addNewGoal(goalList)
+            goalList.text = viewModel.getGoalListAsString()
+            etGoalName.setText("")
 
 
         }
-/*
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.goalUiState.collect {
-                    val goals = viewModel.goalUiState.value.goalList.toString()
-
-                    texten.text = goals
-                }
-            }
-        }
-*/
 
         return view
     }

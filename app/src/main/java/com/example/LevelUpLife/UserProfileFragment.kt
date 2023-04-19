@@ -14,13 +14,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
+import com.example.LevelUpLife.LevelUp.api.ProfilePicture
+import com.example.LevelUpLife.LevelUp.api.ProfilePictureAPI
 import com.example.LevelUpLife.databinding.FragmentCreateAccountBinding
 import com.example.LevelUpLife.databinding.FragmentUserProfileBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import kotlinx.coroutines.launch
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 
 class UserProfileFragment : Fragment() {
 
@@ -41,14 +47,70 @@ class UserProfileFragment : Fragment() {
         binding = FragmentUserProfileBinding.inflate(layoutInflater, container, false)
         val view = binding.root
 
-
         val etChangeUsername = binding.etChangeUserName
         val btnChangeUsername = binding.btnChangeUsername
-        val etEmail = binding.etUserEmail
-        val etUserPasssword = binding.etUserPassword
-
         val btnDeleteUser = binding.btnDeleteUser
+        val tvUserName = binding.tvUserName
+        val btnGetRandomProfilePic = binding.btnRandomProfilePic
+        val imageView = binding.imageView3
 
+
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://randomfox.ca/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val randomPic = retrofit.create<ProfilePictureAPI>().getInfo()
+
+        btnGetRandomProfilePic.setOnClickListener{
+
+            btnGetRandomProfilePic.isEnabled = false
+
+
+
+            randomPic.enqueue(object : Callback<ProfilePicture>{
+                override fun onResponse(
+                    call: Call<ProfilePicture>,
+                    response: Response<ProfilePicture>
+                ) {
+                    // Re-enable the button when the API call completes
+                    btnGetRandomProfilePic.isEnabled = true
+
+                    //Check i the response from API issucsessfull
+                    if(response.isSuccessful) {
+                        val fox = response.body()
+
+                        //Is fox not null?
+                        if(fox != null){
+
+                            Glide.with(binding.root)
+                                .load(fox.myImage)
+                                .apply(RequestOptions.overrideOf( 400).skipMemoryCache(true))
+                                .into(imageView)
+
+                        }
+                        println(fox)
+
+
+                    }else{
+                        println("error")
+                    }
+                }
+
+                override fun onFailure(call: Call<ProfilePicture>, t: Throwable) {
+                    // Re-enable the button when the API call fails
+                    btnGetRandomProfilePic.isEnabled = true
+
+                    println(t.printStackTrace())
+                }
+
+            })
+            }
+
+
+
+        //Fetching my db connection
         db = FirebaseDatabase
             .getInstance("https://leveluplife-d3204-default-rtdb.europe-west1.firebasedatabase.app/")
             .getReference("users")
@@ -69,20 +131,15 @@ class UserProfileFragment : Fragment() {
                          val dbUser = i.getValue(Users::class.java)
                          val username = dbUser?.username
 
-                         binding.tvUserName.text = username
+                         tvUserName.text = username
 
                     }
                      }
-
-                  
-
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-
             } )
         /*
         val viewModel: UserViewModel by viewModels()

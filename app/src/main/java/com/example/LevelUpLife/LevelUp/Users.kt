@@ -4,8 +4,11 @@ data class Users(
     val username : String = "",
     val email : String = "",
     val password : String = "",
-    val isRegistred : Boolean = false
+    val goalList: ArrayList<String> = ArrayList(
+        arrayListOf()),
 
 ){
-constructor(): this("","","",false)
+constructor(): this("","","",)
+
+
 }

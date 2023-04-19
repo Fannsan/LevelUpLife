@@ -59,7 +59,7 @@ class CreateAccountFragment : Fragment() {
             val confirmPassword = etConfirmPassword.text.toString()
 
             //Creating a new User
-            val newUser = Users(username, email, password, isRegistred = true)
+            val newUser = Users(username, email, password)
 
             db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {

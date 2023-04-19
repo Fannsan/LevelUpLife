@@ -124,7 +124,6 @@ class LoginFragment : Fragment() {
                             }
                         }
 
-
                     } else {
                         Toast.makeText(requireContext(),"Your email does not exist, try again or register a new account", Toast.LENGTH_LONG).show()
                     }
@@ -139,9 +138,6 @@ class LoginFragment : Fragment() {
                 }
 
             })
-
-
-
 
         }
 

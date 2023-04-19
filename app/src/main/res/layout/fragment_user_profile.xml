@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfileFragment">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/fab_newGoal">
+    tools:context=".UserProfileFragment"
+    android:background="#554994">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,27 +22,39 @@
         android:src="@drawable/bxs_home"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView3"
+        android:src="@drawable/leveling_up_fox"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        app:shapeAppearanceOverlay="@style/RoundedImageView"
+        android:layout_gravity="center"
+        />
+
+            <Button
+                android:id="@+id/btn_randomProfilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/salmon"
+                android:text="Get a random profile picture" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView3"
-            android:src="@drawable/leveling_up_fox"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:adjustViewBounds="true"
-            app:shapeAppearanceOverlay="@style/RoundedImageView" />
-
         <TextView
             android:id="@+id/tv_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:padding="10dp"
             android:text="Name"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#FFFFFF"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -68,6 +76,10 @@
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#FFFFFF"
+            android:padding="10dp"
             android:text="Here you can change your username, \n profile picture or delete your account. "/>
 
 
@@ -79,7 +91,8 @@
             android:ems="10"
             android:hint="Your new username"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/btn_changeUsername"
@@ -99,21 +112,5 @@
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
         </LinearLayout>
-
-
-    </ScrollView>
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_newGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:clickable="true"
-        android:text="New goal"
-        app:icon="@drawable/baseline_add_24"
-        android:layout_margin="10dp"/>
 </RelativeLayout>

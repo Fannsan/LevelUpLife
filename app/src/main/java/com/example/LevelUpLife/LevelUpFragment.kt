@@ -1,6 +1,7 @@
 package com.example.LevelUpLife
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -90,6 +91,20 @@ class LevelUpFragment : Fragment() {
 
 
             }
+        }
+
+        tvQuote.setOnClickListener{
+
+            val alert = AlertDialog.Builder(requireContext())
+            alert.setTitle("Add qoute to your list")
+            alert.setMessage("Do you want to add this quote to your list?")
+
+            alert.setPositiveButton("Yes") {_, _ ->
+
+             tvQuote.text = viewModel.uiState.value.myList.toString()
+
+
+        }
         }
 
 

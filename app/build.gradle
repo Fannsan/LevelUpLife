@@ -46,8 +46,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.3.0'
 
     implementation 'androidx.activity:activity-ktx:1.6.1'
-
+    // Implement fragment
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
+
+    //implement Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // GSON
+
+    implementation 'com.github.bumptech.glide:glide:4.15.0' // GLIDE
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0' // GLIDE
+
+    //Implementing corutines so the request can work in the background thread
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
