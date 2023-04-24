@@ -14,9 +14,7 @@ class UserViewModel : ViewModel() {
     val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
 
 
-    //var userEmail: String = ""
-
-
+    //method to set the current UiState to my email from the user input
     fun loggedInUser(email: String){
 
         _uiState.update {

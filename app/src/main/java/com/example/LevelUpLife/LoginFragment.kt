@@ -32,7 +32,8 @@ class LoginFragment : Fragment() {
     //initialize database
     private lateinit var db: DatabaseReference
 
-
+    //initialize a relation bound viewModel with activityViewModel
+    private val viewModel : UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +58,9 @@ class LoginFragment : Fragment() {
         val fabHome = binding.fabHome
         val tvSignUp = binding.tvSignUp
 
-        val viewModel: UserViewModel by viewModels()
+        //val viewModel: UserViewModel by viewModels()
+
+        // by activityViewModel() <-- skapar en relationsbunden viewModel
 
 
         var listOfUsers = arrayListOf<Users>()
@@ -73,10 +76,11 @@ class LoginFragment : Fragment() {
 
 
         btnSignIn.setOnClickListener{
-
+            //set userInput to a variable to check against the database
            val email = etEmail.text.toString()
            val password = etPassword.text.toString()
 
+            //Check if email in the databas is the same as userInput email
             db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
@@ -86,25 +90,15 @@ class LoginFragment : Fragment() {
 
                             if (dbUser != null && dbUser.password == password) {
 
-                                /*Save email in UserViewModel if user is logged in
-                                lifecycleScope.launch{
-                                    repeatOnLifecycle(Lifecycle.State.STARTED){
-                                        viewModel.uiState.collect(){
-                                            viewModel.loggedInUser(email = userEmail)
-
-                                        }
-                                    }
-                                }*/
-
-
-                                //viewModel.loggedInUser(email)
 
                                 // Using bundle to send over the email of the user when they log in
-                                val bundle = Bundle()
-                                bundle.putString("email",email)
+                               // val bundle = Bundle()
+                               // bundle.putString("email",email)
 
-                                Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_userProfileFragment, bundle)
+                                //Save email in UI state with UserViewModel if user is logged in
+                                viewModel.loggedInUser(email)
+
+                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_userProfileFragment, )
 
 
 

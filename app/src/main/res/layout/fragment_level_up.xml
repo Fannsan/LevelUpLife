@@ -100,7 +100,41 @@
                 android:text="Irritated"
                 android:textColor="@color/white" />
 
+
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get an advise"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/et_searchAdvise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Serch for a advise..."
+            android:background="@color/white"
+            android:height="48dp"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/salmon"
+            android:text="Search"/>
+
+        <TextView
+            android:id="@+id/tv_advise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="15dp"
+            android:textSize="30sp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

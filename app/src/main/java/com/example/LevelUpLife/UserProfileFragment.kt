@@ -34,6 +34,9 @@ class UserProfileFragment : Fragment() {
 
     private lateinit var db: DatabaseReference
 
+    //initialize a relation bound viewModel with activityViewModel
+    private val viewModel : UserViewModel by activityViewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,7 +56,6 @@ class UserProfileFragment : Fragment() {
         val tvUserName = binding.tvUserName
         val btnGetRandomProfilePic = binding.btnRandomProfilePic
         val imageView = binding.imageView3
-
 
 
         val retrofit = Retrofit.Builder()
@@ -77,7 +79,7 @@ class UserProfileFragment : Fragment() {
                     // Re-enable the button when the API call completes
                     btnGetRandomProfilePic.isEnabled = true
 
-                    //Check i the response from API issucsessfull
+                    //Check i the response from API is successful
                     if(response.isSuccessful) {
                         val fox = response.body()
 
@@ -116,49 +118,39 @@ class UserProfileFragment : Fragment() {
             .getReference("users")
 
 
-       // val userEmail = binding.tvUserName
-
-        val email = arguments?.getString("email")
+        //Fetching the key from my Bundel email from loginFragment
+       // val email = arguments?.getString("email")
 
         //userEmail.text = email
 
+        //Fetching
         db.orderByChild("email")
-            .equalTo(email)
+                //checking if email is the same as in my UiState
+            .equalTo(viewModel.uiState.value.userEmail)
             .addListenerForSingleValueEvent(object : ValueEventListener   {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()){
                      for (i in snapshot.children) {
+                         //creating a variabel for the user from my database
                          val dbUser = i.getValue(Users::class.java)
+                         //creating a variable for my username from my database
                          val username = dbUser?.username
 
+                        //setting the username to
                          tvUserName.text = username
-
                     }
                      }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(
+                        requireContext(),
+                        "Failure: something went wrong with the database connection",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             } )
-        /*
-        val viewModel: UserViewModel by viewModels()
 
-        lifecycleScope.launch{
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collect(){ uiState ->
-
-                    userEmail.text = uiState.userEmail
-                    println(uiState.userEmail)
-                }
-            }
-        }
-     */
-
-        //Inizialise viewmodel
-       // viewModel = ViewModelProvider(requireActivity())[UserViewModel().javaClass]
-       // val email = viewModel.getuserEmail()
-       // userEmail.text = email
 
 
         btnChangeUsername.setOnClickListener {
@@ -176,7 +168,7 @@ class UserProfileFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object :
+            db.orderByChild("email").equalTo(viewModel.uiState.value.userEmail).addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -219,13 +211,14 @@ class UserProfileFragment : Fragment() {
 
         btnDeleteUser.setOnClickListener {
 
+            //creating an alert dialog if the user want so delete their profile
             val alert = AlertDialog.Builder(requireContext())
             alert.setTitle("Delete profile")
             alert.setMessage("Are you sure you want to delete your profile?")
 
             alert.setPositiveButton("Yes") {_, _ ->
 
-                db.orderByChild("email").equalTo(email)
+                db.orderByChild("email").equalTo(viewModel.uiState.value.userEmail)
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if (snapshot.exists()) {
@@ -263,14 +256,7 @@ class UserProfileFragment : Fragment() {
 
 
         }
-       /* lifecycleScope.launch{
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.uiState.collect(){
-             val email = viewModel.getUserEmail()
-                    userEmail = email
-                }
-            }
-        }*/
+
 
         return view
     }
