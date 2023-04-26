@@ -1,8 +1,10 @@
 package com.example.LevelUpLife.LevelUp
-
+/*
 data class UserUiState(
 
-    var userEmail: String = ""
+  var userEmail: String = ""
 
 ) {
 }
+
+ */

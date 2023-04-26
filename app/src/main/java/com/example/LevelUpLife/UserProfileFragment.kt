@@ -8,11 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -20,11 +15,8 @@ import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
 import com.example.LevelUpLife.LevelUp.api.ProfilePicture
 import com.example.LevelUpLife.LevelUp.api.ProfilePictureAPI
-import com.example.LevelUpLife.databinding.FragmentCreateAccountBinding
 import com.example.LevelUpLife.databinding.FragmentUserProfileBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
-import kotlinx.coroutines.launch
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -73,17 +65,12 @@ class UserProfileFragment : Fragment() {
 
         btnGetRandomProfilePic.setOnClickListener{
 
-            btnGetRandomProfilePic.isEnabled = false
-
-
 
             randomPic.enqueue(object : Callback<ProfilePicture>{
                 override fun onResponse(
                     call: Call<ProfilePicture>,
                     response: Response<ProfilePicture>
                 ) {
-                    // Re-enable the button when the API call completes
-                    btnGetRandomProfilePic.isEnabled = true
 
                     //Check if the response from API is successful
                     if(response.isSuccessful) {
@@ -107,8 +94,6 @@ class UserProfileFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<ProfilePicture>, t: Throwable) {
-                    // Re-enable the button when the API call fails
-                    btnGetRandomProfilePic.isEnabled = true
 
                     println(t.printStackTrace())
                 }
@@ -132,11 +117,11 @@ class UserProfileFragment : Fragment() {
         //Fetching
         db.orderByChild("email")
                 //checking if email is the same as in my UiState
-            .equalTo(viewModel.uiState.value.userEmail)
+            .equalTo(viewModel.uiState.value.email)
             .addListenerForSingleValueEvent(object : ValueEventListener   {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
-                     for (i in snapshot.children) {
+                override fun onDataChange(datasnapshot: DataSnapshot) {
+                    if (datasnapshot.exists()){
+                     for (i in datasnapshot.children) {
                          //creating a variabel for the user from my database
                          val dbUser = i.getValue(Users::class.java)
                          //creating a variable for my username from my database
@@ -174,7 +159,7 @@ class UserProfileFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            db.orderByChild("email").equalTo(viewModel.uiState.value.userEmail).addListenerForSingleValueEvent(object :
+            db.orderByChild("email").equalTo(viewModel.uiState.value.email).addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -224,7 +209,7 @@ class UserProfileFragment : Fragment() {
 
             alert.setPositiveButton("Yes") {_, _ ->
 
-                db.orderByChild("email").equalTo(viewModel.uiState.value.userEmail)
+                db.orderByChild("email").equalTo(viewModel.uiState.value.email)
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if (snapshot.exists()) {

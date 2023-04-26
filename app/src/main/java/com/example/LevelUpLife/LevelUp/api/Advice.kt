@@ -25,7 +25,7 @@ class Advice{
     var slips: ArrayList<Slips> = arrayListOf()
 
     override fun toString(): String {
-        return "Advice(amount=$amount, query=$query, slips=$slips)"
+        return "Advice: slips=$slips)"
     }
 
 

@@ -25,6 +25,8 @@ class LoginFragment : Fragment() {
     //initialize a relation bound viewModel with activityViewModel
     private val viewModel : UserViewModel by activityViewModels()
 
+    //private val goalViewModel : GoalViewModel by activityViewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +40,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater,container,false)
         val view = binding.root
 
+        //connection to my database
         db = FirebaseDatabase
             .getInstance("https://leveluplife-d3204-default-rtdb.europe-west1.firebasedatabase.app/")
             .getReference("users")
@@ -49,7 +52,9 @@ class LoginFragment : Fragment() {
         val tvSignUp = binding.tvSignUp
 
 
-        var listOfUsers = arrayListOf<Users>()
+       var listOfUsers = arrayListOf<Users>()
+
+
 
         fabHome.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
@@ -76,13 +81,42 @@ class LoginFragment : Fragment() {
 
                             if (dbUser != null && dbUser.password == password) {
 
+                                /*
+                                val currentUser = userSnapshot.key?.let { it1 ->
+
+
+                                    //viewModel.setCurrentUser(userName = dbUser.username.toString(), email = dbUser.email.toString(), password = dbUser.password.toString(), goal = dbUser.goal.toString(), goalList = dbUser.goalList)
+
+
+                                    Users(
+                                        username = dbUser.username.toString(),
+                                        email = dbUser.email.toString(),
+                                        password = dbUser.password.toString(),
+                                        goal = dbUser.goal.toString(),
+                                        goalList = dbUser.goalList,
+                                        id = it1
+
+                                    )
+
+                                }
+
+                                 */
+
+                                viewModel.setCurrentUser(username = dbUser.username.toString(), email = dbUser.email.toString(), password = dbUser.password.toString(), goal = dbUser.goal.toString(), goalList = dbUser.goalList, id = userSnapshot.key.toString())
+
+
 
                                 // Using bundle to send over the email of the user when they log in
                                // val bundle = Bundle()
                                // bundle.putString("email",email)
 
                                 //Save email in UI state with UserViewModel if user is logged in
-                                viewModel.loggedInUser(email)
+
+
+                                //viewModel.loggedInUser(email)
+
+
+
 
                                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_userProfileFragment, )
 

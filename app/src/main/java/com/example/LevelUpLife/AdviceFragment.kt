@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.LevelUpLife.LevelUp.api.Advice
 import com.example.LevelUpLife.LevelUp.api.AdviceApi
 import com.example.LevelUpLife.databinding.FragmentAdviceBinding
@@ -33,6 +34,8 @@ class AdviceFragment : Fragment() {
         val btnSearchAdvice = binding.btnSearch
         val tvAdvice = binding.tvAdvise
         val etAdvice = binding.etAdvice
+
+        val fabHome = binding.fabHome
 
 
 
@@ -80,6 +83,10 @@ class AdviceFragment : Fragment() {
                 }
             })
 
+        }
+
+        fabHome.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_adviceFragment_to_loggedInHomeFragment)
         }
 
         return view

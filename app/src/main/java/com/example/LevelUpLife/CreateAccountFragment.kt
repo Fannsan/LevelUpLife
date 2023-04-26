@@ -59,12 +59,13 @@ class CreateAccountFragment : Fragment() {
             val confirmPassword = etConfirmPassword.text.toString()
 
             //Creating a new User
-            val newUser = Users(username, email, password)
+            val newUser = Users(username, email, password,)
 
             db.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
+                //datasnapshot
+                override fun onDataChange(datasnapshot: DataSnapshot) {
                     when {
-                        snapshot.exists() ->{
+                        datasnapshot.exists() ->{
                         Toast.makeText(requireContext(),"Email already exists", Toast.LENGTH_LONG).show()
                     }
                         //checking if the user has written email and passwords in the fields

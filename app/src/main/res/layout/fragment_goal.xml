@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoalFragment"
+    android:background="@color/salmon">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/fox2">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#CDF5DDC1"
+            android:background="@drawable/rounded"
+            android:gravity="center"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Here you can set some goals for yourself!"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/et_goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:hint="Your goal..."
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/btn_setGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set a goal"
+            android:padding="5dp"
+            android:layout_marginHorizontal="20dp"
+            android:backgroundTint="@color/salmon"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_showGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your goal"
+            android:textSize="28sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

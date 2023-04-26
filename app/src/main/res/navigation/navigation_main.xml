@@ -106,5 +106,17 @@
         <action
             android:id="@+id/action_loggedInHomeFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_loggedInHomeFragment_to_goalFragment"
+            app:destination="@id/goalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goalFragment"
+        android:name="com.example.LevelUpLife.GoalFragment"
+        android:label="fragment_goal"
+        tools:layout="@layout/fragment_goal" >
+        <action
+            android:id="@+id/action_goalFragment_to_loggedInHomeFragment"
+            app:destination="@id/loggedInHomeFragment" />
     </fragment>
 </navigation>
