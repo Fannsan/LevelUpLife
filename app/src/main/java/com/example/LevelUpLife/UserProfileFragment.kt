@@ -56,6 +56,12 @@ class UserProfileFragment : Fragment() {
         val tvUserName = binding.tvUserName
         val btnGetRandomProfilePic = binding.btnRandomProfilePic
         val imageView = binding.imageView3
+        val btnLoggedInHomeFragment = binding.fabHome
+
+
+        btnLoggedInHomeFragment.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_userProfileFragment_to_loggedInHomeFragment)
+        }
 
 
         val retrofit = Retrofit.Builder()
@@ -79,7 +85,7 @@ class UserProfileFragment : Fragment() {
                     // Re-enable the button when the API call completes
                     btnGetRandomProfilePic.isEnabled = true
 
-                    //Check i the response from API is successful
+                    //Check if the response from API is successful
                     if(response.isSuccessful) {
                         val fox = response.body()
 

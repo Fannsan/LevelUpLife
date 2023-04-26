@@ -10,22 +10,33 @@
         android:id="@+id/fab_Home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:backgroundTint="@color/salmon"
         android:clickable="true"
         android:src="@drawable/bxs_home"
-        tools:ignore="ContentDescription"
-        android:layout_margin="25dp"/>
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/fox2">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:backgroundTint="#CDF5DDC1"
+        android:background="@drawable/rounded"
+        android:layout_marginHorizontal="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL UP"
-            android:textColor="#E58984"
+            android:textColor="#691F2C"
             android:textSize="40sp"
             android:textStyle="bold"/>
 
@@ -33,22 +44,26 @@
             android:id="@+id/tv_quote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="?"
+            android:text=""
             android:textColor="#E58984"
             android:background="@drawable/rounded"
             android:textSize="20sp"
-            android:padding="10dp"
             android:backgroundTint="@color/white"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:padding="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="16sp"
-            android:text="Get your daily inspiration by shoosing a fitting mood"
-            android:textColor="@color/white" />
+            android:layout_marginHorizontal="10dp"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="How are you feeling today? \n Get your daily inspiration by shoosing a fitting mood!"
+            android:textColor="#691F2C"
+            />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -80,7 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/btn_anxious"
@@ -100,41 +116,8 @@
                 android:text="Irritated"
                 android:textColor="@color/white" />
 
-
-
-
         </androidx.appcompat.widget.LinearLayoutCompat>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Get an advise"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-
-        <EditText
-            android:id="@+id/et_searchAdvise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Serch for a advise..."
-            android:background="@color/white"
-            android:height="48dp"
-            android:padding="15dp"
-            android:layout_marginTop="10dp"/>
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/salmon"
-            android:text="Search"/>
-
-        <TextView
-            android:id="@+id/tv_advise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_marginTop="15dp"
-            android:textSize="30sp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

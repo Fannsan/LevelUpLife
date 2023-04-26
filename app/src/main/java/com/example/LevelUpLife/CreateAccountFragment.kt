@@ -67,11 +67,11 @@ class CreateAccountFragment : Fragment() {
                         snapshot.exists() ->{
                         Toast.makeText(requireContext(),"Email already exists", Toast.LENGTH_LONG).show()
                     }
-                    //checking if the user has written email and passwords in the fields
-                    email.isEmpty() && password.isEmpty() && confirmPassword.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches() ->{
+                        //checking if the user has written email and passwords in the fields
+                        email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches() ->{
                         Toast.makeText(requireContext(),"You need to enter a valid email address and passwords",Toast.LENGTH_LONG).show()
 
-                    //Check if password and confirm password is not the same
+                        //Check if password and confirm password is not the same
                         } password != confirmPassword -> {
                         Toast.makeText(requireContext(),"Passwords are not matching", Toast.LENGTH_LONG).show()
                     }else -> {

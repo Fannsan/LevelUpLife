@@ -7,21 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
-import com.example.LevelUpLife.LevelUp.GoalViewModel
-import com.example.LevelUpLife.LevelUp.LevelUpViewModel
 import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
 import com.example.LevelUpLife.databinding.FragmentLoginBinding
-import com.example.LevelUpLife.databinding.FragmentNewsletterBinding
 import com.google.firebase.database.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
@@ -57,10 +47,6 @@ class LoginFragment : Fragment() {
         val btnSignIn = binding.btnSignIn
         val fabHome = binding.fabHome
         val tvSignUp = binding.tvSignUp
-
-        //val viewModel: UserViewModel by viewModels()
-
-        // by activityViewModel() <-- skapar en relationsbunden viewModel
 
 
         var listOfUsers = arrayListOf<Users>()

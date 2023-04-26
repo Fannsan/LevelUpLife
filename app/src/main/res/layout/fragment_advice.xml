@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdviceFragment">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:clickable="true"
+        android:src="@drawable/bxs_home"
+        android:backgroundTint="@color/salmon"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/fox2"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:backgroundTint="#D5F5DDC1"
+            android:background="@drawable/rounded"
+            android:layout_marginHorizontal="20dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ask for advice"
+                android:textSize="30sp"
+                android:textColor="#691F2C"
+                android:layout_marginBottom="30dp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-smallcaps"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Write in a word to get advice on the asked subject."
+                android:textColor="#6C232A"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:id="@+id/et_advice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:minHeight="48dp"
+                android:background="@color/white"
+                android:hint="Your word..."
+                android:padding="10dp"
+                />
+
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/salmon"
+                android:text="search advice"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_advise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#E58984"
+                android:background="@drawable/rounded"
+                android:textSize="20sp"
+                android:backgroundTint="@color/white"
+                android:layout_margin="20dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>

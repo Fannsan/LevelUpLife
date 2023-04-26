@@ -23,36 +23,27 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
         val view = binding.root
 
-        val btnToAboutFragment = binding.btnGoToAbout
 
-        val btnLevelUp = binding.btnGoToLevelUp
 
-        val btnLogin = binding.btnLogin
+       val btnLogin = binding.btnLogin
+       val btnNewsLetter = binding.btnGoToSignUpNewsletter
 
-        val btnToGoal = binding.btnToGoals
+
 
         btnLogin.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_loginFragment)
         }
 
-        //Navigate to About
-        btnToAboutFragment.setOnClickListener(){
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_aboutFragment)
+        btnNewsLetter.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_newsletterFragment)
         }
 
-        //Navigate to Level UP
-        btnLevelUp.setOnClickListener(){
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_levelUpFragment)
-        }
-
-        btnToGoal.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_goalFragment)
-        }
 
 
        return view

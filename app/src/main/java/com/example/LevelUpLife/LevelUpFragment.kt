@@ -49,100 +49,16 @@ class LevelUpFragment : Fragment() {
         val btnIrritated = binding.btnIrritated
         val btnHome = binding.fabHome
 
-        val tvAdvice = binding.tvAdvise
-        val etSearchAdvice = binding.etSearchAdvise
-        val btnSearch = binding.btnSearch
-
         //Instantiate viewModel
         val viewModel: LevelUpViewModel by viewModels()
 
 
-      /*
-         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.quotable.io/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val adviceApi = retrofit.create(AdviceApi::class.java)
-        val call = adviceApi.getAdvice()
-
-        call.enqueue(object : Callback<Advice>{
-            override fun onResponse(call: Call<Advice>, response: Response<Advice>) {
-                if (response.isSuccessful){
-                    println(response.body())
-                    val slip = response.body()
-                    if (slip != null){
-
-                        tvAdvice.text = slip.toString()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<Advice>, t: Throwable) {
-                println(t.printStackTrace())
-            }
-
-        })
-
-
-       */
-
-
-        btnSearch.setOnClickListener{
-
-            val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.adviceslip.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val query = etSearchAdvice.text.toString()
-
-        val randomAdvice = retrofit.create<AdviceApi>().getAdvice(query)
-
-        randomAdvice.enqueue(object : Callback<Advice>{
-
-            override fun onResponse(call: Call<Advice>, response: Response<Advice>) {
-
-                println("checking response")
-
-                if(response.isSuccessful){
-
-                    println(response.body().toString())
-
-                    val advice = response.body()
-
-                    if(advice != null){
-                        println(advice)
-
-                        if (advice.slips.isNotEmpty()){
-                            tvAdvice.text = advice.slips.toString()
-                        } else{
-                            tvAdvice.text = "advice not found"
-                        }
-
-
-
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<Advice>, t: Throwable) {
-                println(t.printStackTrace())
-            }
-        })
-
-        }
-
-
-
-
         //Navigate to home
         btnHome.setOnClickListener(){
-            Navigation.findNavController(view).navigate(R.id.action_levelUpFragment_to_homeFragment)
+            Navigation.findNavController(view).navigate(R.id.action_levelUpFragment_to_loggedInHomeFragment)
         }
 
-
-
+        //Buttons for every mood
         btnExcited.setOnClickListener(){
 
             //fetching my quote from the chosen array
