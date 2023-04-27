@@ -9,16 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
-import com.example.LevelUpLife.LevelUp.api.ProfilePicture
-import com.example.LevelUpLife.LevelUp.api.ProfilePictureAPI
 import com.example.LevelUpLife.databinding.FragmentUserProfileBinding
 import com.google.firebase.database.*
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
 
 class UserProfileFragment : Fragment() {
 
@@ -46,60 +40,12 @@ class UserProfileFragment : Fragment() {
         val btnChangeUsername = binding.btnChangeUsername
         val btnDeleteUser = binding.btnDeleteUser
         val tvUserName = binding.tvUserName
-        val btnGetRandomProfilePic = binding.btnRandomProfilePic
-        val imageView = binding.imageView3
         val btnLoggedInHomeFragment = binding.fabHome
 
 
         btnLoggedInHomeFragment.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_userProfileFragment_to_loggedInHomeFragment)
         }
-
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://randomfox.ca/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val randomPic = retrofit.create<ProfilePictureAPI>().getInfo()
-
-        btnGetRandomProfilePic.setOnClickListener{
-
-
-            randomPic.enqueue(object : Callback<ProfilePicture>{
-                override fun onResponse(
-                    call: Call<ProfilePicture>,
-                    response: Response<ProfilePicture>
-                ) {
-
-                    //Check if the response from API is successful
-                    if(response.isSuccessful) {
-                        val fox = response.body()
-
-                        //Is fox not null?
-                        if(fox != null){
-
-                            Glide.with(binding.root)
-                                .load(fox.myImage)
-                                .apply(RequestOptions.overrideOf( 400).skipMemoryCache(true))
-                                .into(imageView)
-
-                        }
-                        println(fox)
-
-
-                    }else{
-                        println("error")
-                    }
-                }
-
-                override fun onFailure(call: Call<ProfilePicture>, t: Throwable) {
-
-                    println(t.printStackTrace())
-                }
-
-            })
-            }
 
 
 
@@ -158,6 +104,7 @@ class UserProfileFragment : Fragment() {
                 ).show()
                 return@setOnClickListener
             }
+
 
             db.orderByChild("email").equalTo(viewModel.uiState.value.email).addListenerForSingleValueEvent(object :
                 ValueEventListener {

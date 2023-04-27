@@ -11,7 +11,9 @@ data class Users(
 
 ){
     //constructor(): this("","","",)
-
+    override fun toString(): String {
+        return "Users(username=$username, email=$email, password=$password, goal=$goal, goalList=$goalList, id=$id)"
+    }
 
 
 }

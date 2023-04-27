@@ -84,15 +84,6 @@
             app:destination="@id/loggedInHomeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.LevelUpLife.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/loggedInHomeFragment"
         android:name="com.example.LevelUpLife.LoggedInHomeFragment"
         android:label="fragment_logged_in_home"

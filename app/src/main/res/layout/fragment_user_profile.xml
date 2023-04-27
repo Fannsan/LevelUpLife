@@ -26,28 +26,9 @@
         >
 
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageView3"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:adjustViewBounds="true"
-        app:shapeAppearanceOverlay="@style/RoundedImageView"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        />
-
-        <Button
-        android:id="@+id/btn_randomProfilePic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/salmon"
-        android:text="Get a random profile picture" />
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:backgroundTint="#CDF5DDC1"

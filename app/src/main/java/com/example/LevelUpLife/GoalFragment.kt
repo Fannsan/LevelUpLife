@@ -1,17 +1,22 @@
 package com.example.LevelUpLife
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.LevelUpLife.LevelUp.Goal
 import com.example.LevelUpLife.LevelUp.UserViewModel
 import com.example.LevelUpLife.LevelUp.Users
 import com.example.LevelUpLife.databinding.FragmentGoalBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
+import kotlinx.coroutines.launch
 
 
 class GoalFragment : Fragment() {
@@ -32,6 +37,7 @@ class GoalFragment : Fragment() {
 
     }
 
+    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,6 +94,7 @@ class GoalFragment : Fragment() {
                         newGoalRef.setValue(newGoalsList)
                     }
                     // Update the UI with the updated list of goals
+
                     tvGoals.text = goalList.toString()
                 }
 
@@ -102,6 +109,8 @@ class GoalFragment : Fragment() {
             )
 
         }
+
+
 
         return view
     }

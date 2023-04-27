@@ -14,11 +14,18 @@
         android:orientation="vertical"
         android:background="@drawable/fox2">
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
         <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
         android:backgroundTint="#CDF5DDC1"
         android:background="@drawable/rounded">
 
@@ -32,7 +39,6 @@
         android:textColor="#691F2C"
         android:layout_marginTop="10dp"
         android:textSize="50sp"
-        android:padding="10dp"
         android:layout_marginHorizontal="10dp"
         android:fontFamily="sans-serif-smallcaps"
         />
@@ -59,8 +65,6 @@
                 android:textSize="25sp"
                 android:layout_marginBottom="15dp"/>
 
-
-
             <Button
             android:id="@+id/btn_GoToSignUpNewsletter"
             android:layout_width="match_parent"
@@ -75,6 +79,6 @@
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
+        </ScrollView>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </FrameLayout>

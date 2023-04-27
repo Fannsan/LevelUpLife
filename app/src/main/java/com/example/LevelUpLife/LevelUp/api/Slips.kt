@@ -6,6 +6,6 @@ class Slips {
     var date: String? = null
 
     override fun toString(): String {
-        return "Slips(id=$id, advice=$advice, date=$date)"
+        return "Advice: $advice \n"
     }
 }

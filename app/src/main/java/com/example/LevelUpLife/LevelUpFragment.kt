@@ -7,23 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.LevelUpLife.LevelUp.LevelUpViewModel
-import com.example.LevelUpLife.LevelUp.api.Advice
-import com.example.LevelUpLife.LevelUp.api.AdviceApi
-import com.example.LevelUpLife.LevelUp.api.ProfilePictureAPI
 import com.example.LevelUpLife.databinding.FragmentLevelUpBinding
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.launch
 import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LevelUpFragment : Fragment() {
 

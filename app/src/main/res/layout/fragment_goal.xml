@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#CDF5DDC1"
+
             android:background="@drawable/rounded"
             android:gravity="center"
             android:orientation="vertical">
@@ -24,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
+            android:maxWidth="400dp"
             android:text="Here you can set some goals for yourself!"
             android:layout_marginHorizontal="20dp"
             android:gravity="center"/>

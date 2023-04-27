@@ -34,10 +34,7 @@ class AdviceFragment : Fragment() {
         val btnSearchAdvice = binding.btnSearch
         val tvAdvice = binding.tvAdvise
         val etAdvice = binding.etAdvice
-
         val fabHome = binding.fabHome
-
-
 
 
         btnSearchAdvice.setOnClickListener{
@@ -54,12 +51,7 @@ class AdviceFragment : Fragment() {
             randomAdvice.enqueue(object : Callback<Advice> {
 
                 override fun onResponse(call: Call<Advice>, response: Response<Advice>) {
-
-                    println("checking response")
-
                     if(response.isSuccessful){
-
-                        println(response.body().toString())
 
                         val advice = response.body()
 
@@ -67,13 +59,11 @@ class AdviceFragment : Fragment() {
                             println(advice)
 
                             if (advice.slips.isNotEmpty()){
+
                                 tvAdvice.text = advice.slips.toString()
                             } else{
-                                tvAdvice.text = "advice not found"
+                                tvAdvice.text = "Advice not found"
                             }
-
-
-
                         }
                     }
                 }
@@ -84,6 +74,7 @@ class AdviceFragment : Fragment() {
             })
 
         }
+
 
         fabHome.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_adviceFragment_to_loggedInHomeFragment)
