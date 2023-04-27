@@ -15,7 +15,7 @@ class UserViewModel : ViewModel() {
     //method to set the current UiState to the updated values if the user update it
     fun setCurrentUser(username: String, email: String, password: String, goal: String, goalList: ArrayList<Goal>?, id: String){
 
-
+        //update my uiState in my User
         _uiState.update {
             currentState -> currentState.copy(
             username = username,
@@ -31,29 +31,5 @@ class UserViewModel : ViewModel() {
     }
 
 
-/*
-    private val _uiState = MutableStateFlow(UserUiState())
-    val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
-
-
-    //method to set the current UiState to my email from the user input
-    fun loggedInUser(email: String){
-
-        _uiState.update {
-            currentState -> currentState.copy(
-            userEmail = email)
-        }
-        println(email)
-
-    }
-
-
-
-   fun getUserEmail():String {
-        return uiState.value.userEmail
-
-    }
-
- */
 }
 

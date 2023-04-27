@@ -81,28 +81,14 @@ class LoginFragment : Fragment() {
 
                             if (dbUser != null && dbUser.password == password) {
 
-                                /*
-                                val currentUser = userSnapshot.key?.let { it1 ->
 
-
-                                    //viewModel.setCurrentUser(userName = dbUser.username.toString(), email = dbUser.email.toString(), password = dbUser.password.toString(), goal = dbUser.goal.toString(), goalList = dbUser.goalList)
-
-
-                                    Users(
-                                        username = dbUser.username.toString(),
-                                        email = dbUser.email.toString(),
-                                        password = dbUser.password.toString(),
-                                        goal = dbUser.goal.toString(),
-                                        goalList = dbUser.goalList,
-                                        id = it1
-
-                                    )
-
-                                }
-
-                                 */
-
-                                viewModel.setCurrentUser(username = dbUser.username.toString(), email = dbUser.email.toString(), password = dbUser.password.toString(), goal = dbUser.goal.toString(), goalList = dbUser.goalList, id = userSnapshot.key.toString())
+                                viewModel.setCurrentUser(
+                                    username = dbUser.username.toString(),
+                                    email = dbUser.email.toString(),
+                                    password = dbUser.password.toString(),
+                                    goal = dbUser.goal.toString(),
+                                    goalList = dbUser.goalList,
+                                    id = userSnapshot.key.toString())
 
 
 
@@ -114,8 +100,6 @@ class LoginFragment : Fragment() {
 
 
                                 //viewModel.loggedInUser(email)
-
-
 
 
                                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_userProfileFragment, )

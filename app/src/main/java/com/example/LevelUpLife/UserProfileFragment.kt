@@ -55,12 +55,7 @@ class UserProfileFragment : Fragment() {
             .getReference("users")
 
 
-        //Fetching the key from my Bundel email from loginFragment
-       // val email = arguments?.getString("email")
-
-        //userEmail.text = email
-
-        //Fetching
+        //Fetching child from the database
         db.orderByChild("email")
                 //checking if email is the same as in my UiState
             .equalTo(viewModel.uiState.value.email)
@@ -93,7 +88,6 @@ class UserProfileFragment : Fragment() {
         btnChangeUsername.setOnClickListener {
 
             val username = etChangeUsername.text.toString()
-
 
             // Check if the username EditText is empty
             if (username.isBlank()) {

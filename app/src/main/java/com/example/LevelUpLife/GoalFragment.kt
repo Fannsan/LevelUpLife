@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -27,8 +28,6 @@ class GoalFragment : Fragment() {
     private lateinit var db: DatabaseReference
 
     //initialize a relation bound viewModel with activityViewModel
-    //private val goalViewModel : GoalViewModel by activityViewModels()
-
     private val viewModel : UserViewModel by activityViewModels()
 
 
@@ -45,12 +44,10 @@ class GoalFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentGoalBinding.inflate(layoutInflater,container,false)
 
+        
         val view = binding.root
-
         val etGoal = binding.etGoal
-
         val btnSetGoal = binding.btnSetGoal
-
         val tvGoals = binding.tvShowGoal
 
         //variable for my Goal class
@@ -58,12 +55,9 @@ class GoalFragment : Fragment() {
         val goalList = ArrayList<Goal>()
 
         //Fetching my db connection
-
-
         db = FirebaseDatabase
             .getInstance("https://leveluplife-d3204-default-rtdb.europe-west1.firebasedatabase.app/")
             .getReference("users")
-
 
 
 
@@ -71,6 +65,7 @@ class GoalFragment : Fragment() {
 
             //variabel for my edittext
             val newgoal = etGoal.text.toString()
+
 
             mygoal = Goal(newgoal)
             goalList.add(mygoal)
@@ -93,15 +88,18 @@ class GoalFragment : Fragment() {
                         newGoalsList.add(mygoal)
                         newGoalRef.setValue(newGoalsList)
                     }
-                    // Update the UI with the updated list of goals
 
+                    // Update the UI with the updated list of goals
                     tvGoals.text = goalList.toString()
+
                 }
 
-
-
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(
+                        requireContext(),
+                        "Failure: something went wrong with the database connection: $it",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
             }
@@ -109,8 +107,6 @@ class GoalFragment : Fragment() {
             )
 
         }
-
-
 
         return view
     }

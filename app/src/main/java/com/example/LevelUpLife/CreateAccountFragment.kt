@@ -92,6 +92,7 @@ class CreateAccountFragment : Fragment() {
                                 binding.etConfirmPassword.text.clear()
                                 binding.etUsername.text.clear()
 
+                                Navigation.findNavController(view).navigate(R.id.action_createAccountFragment_to_loginFragment)
                             }
                             .addOnFailureListener {
                                 Toast.makeText(
